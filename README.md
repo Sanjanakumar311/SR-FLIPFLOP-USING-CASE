@@ -1,14 +1,14 @@
 # SR-FLIPFLOP-USING-CASE
 
-**AIM:**
+*AIM:*
 
 To implement  SR flipflop using verilog and validating their functionality using their functional tables
 
-**SOFTWARE REQUIRED:**
+*SOFTWARE REQUIRED:*
 
 Quartus prime
 
-**THEORY**
+*THEORY*
 
 SR Flip-Flop SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
 
@@ -32,17 +32,46 @@ By using three variable K-Map, we can get the simplified expression for next sta
  
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=S+R′Q(t)Q(t+1)=S+R′Q(t)
 
-**Procedure**
+*Procedure*
 
 /* write all the steps invloved */
 
-**PROGRAM**
+*PROGRAM*
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by:RAJKUMAR T
+ RegisterNumber:212224040263
 */
 
-**RTL LOGIC FOR FLIPFLOPS**
 
-**TIMING DIGRAMS FOR FLIP FLOPS**
 
-**RESULTS**
+module SRFLIPFLOPUSINGCASE(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+ 
+  always@(posedge clk) begin // for synchronous reset
+    if(!reset)       q <= 0;
+    else 
+  begin
+      case({s,r})       
+	     2'b00: q <= q;     
+		  2'b01: q <= 1'b0;
+		  2'b10: q <= 1'b1;
+		  2'b11: q <= 1'bx;
+		  
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+
+
+*RTL LOGIC FOR FLIPFLOPS*
+![324265820-126a14ac-863a-46a7-abc0-3b9c529444c0](https://github.com/user-attachments/assets/408e4b65-c048-4104-8c57-c750947bee9b)
+
+*TIMING DIGRAMS FOR FLIP FLOPS*
+![324265829-00f49522-2dcf-450e-a728-bcb83e9146e8](https://github.com/user-attachments/assets/13198884-ef32-480c-b8e2-e1a330b4b797)
+
+*RESULTS*
+Therefore the verilog HDL code has been successfully executed.
